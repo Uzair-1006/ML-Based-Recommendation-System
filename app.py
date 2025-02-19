@@ -6,11 +6,18 @@ from openai import OpenAI
 from datetime import datetime
 
 app = Flask(__name__)
+from dotenv import load_dotenv
+import os
 
+# Load environment variables from .env file
+load_dotenv()
+
+# Access the API key
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 # Initialize OpenRouter client
 client = OpenAI(
     base_url="https://openrouter.ai/api/v1",
-    api_key="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"
+    api_key=OPENAI_API_KEY
 )
 
 # Load and prepare data

@@ -1,0 +1,217 @@
+body { 
+    font-family: Arial, sans-serif; 
+    max-width: 100%; 
+    margin: 0 auto; 
+    padding: 0; 
+}
+.search-form { 
+    margin: 20px 0; 
+}
+input[type="text"] { 
+    width: 300px; 
+    padding: 8px; 
+}
+button { 
+    padding: 8px 16px; 
+    background: #4CAF50; 
+    color: white; 
+    border: none; 
+    cursor: pointer; 
+}
+#results { 
+    margin-top: 20px; 
+}
+.result-item { 
+    margin: 10px 0; 
+    padding: 10px; 
+    border: 1px solid #ddd; 
+}
+.explanation { 
+    margin-top: 20px; 
+    padding: 15px; 
+    background: #f5f5f5; 
+}
+/* Navbar Styling */
+#nav {
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    background-color: #4CAF50; /* Blue gradient-like background */
+    padding: 20px 20px;
+    color: black;
+}
+
+#nav h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+#nav div:last-child {
+    display: flex;
+    gap: 15px;
+}
+
+#nav a {
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+#nav a:hover {
+    color: #ffdd57; /* Yellow hover effect */
+}
+.hero-section{
+    display: flex;
+    justify-content: center;
+    background-color: #66C4E4;
+    padding: 50px;
+}
+.hero-section div{
+    padding-right: 100px;
+    padding-left: 80px;
+    padding-top: 10px;
+}
+.ml-explanation{
+    display: flex;
+    justify-content: center;
+    background-color: orange;
+    padding: 40px;
+}
+.ml-explanation div{
+    padding-right: 100px;
+    padding-left: 80px;
+    padding-top: 10px;
+}
+.example-image{
+    border: 2px solid black;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding: 5px;
+}
+/* Examples Section */
+/* Examples Section */
+.examples-section {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #f9f9f9; /* Light gray background */
+}
+
+.examples-section h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.examples-section p {
+    font-size: 1rem;
+    margin-bottom: 30px;
+    color: #555;
+}
+
+/* Cards Container */
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid */
+    gap: 20px;
+    justify-content: center;
+}
+
+/* Individual Card */
+.card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Larger shadow on hover */
+}
+
+.card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.card p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #666;
+}
+/* Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000; /* Ensure it's on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  }
+  
+  .modal-content {
+    background-color: #fff;
+    margin: 10% auto; /* Center the modal */
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%; /* Responsive width */
+    max-width: 600px; /* Maximum width */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+  
+  .close {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    color: #aaa;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+  }
+  
+  .result-item {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .explanation {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+  }
+  /* Footer Styles */
+.footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #4CAF50; /* Matches the navbar color */
+    color: white;
+    font-size: 0.9rem;
+    margin-top: 40px; /* Space above the footer */
+}
+
+.footer p {
+    margin: 0;
+}

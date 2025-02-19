@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>OmniSearch</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav id="nav">
+      <img
+          src="{{ url_for('static', filename='search.png') }}"
+          alt="OmniSearch Logo"
+          width="40px"
+          height="30px"
+        />
+      <div>
+        
+        <h2>OmniSearch</h2>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section">
+      <div>
+        <img
+          src="{{ url_for('static', filename='image.jpg') }}"
+          alt="OmniSearch Logo"
+          width="200px"
+          height="150px"
+        />
+      </div>
+      <div class="hero-content">
+        <h1>Welcome to <span class="highlight">OmniSearch</span></h1>
+        <p>
+          Your ultimate guide to finding anything, from programming languages to
+          everyday goods.
+        </p>
+        <form id="searchForm" class="search-form">
+          <input
+            type="text"
+            name="query"
+            placeholder="What are you looking for?"
+            autocomplete="off"
+            required
+          />
+          <button type="submit" aria-label="Search">Search</button>
+        </form>
+      </div>
+    </header>
+
+    <!-- ML Explanation Section -->
+    <section class="ml-explanation">
+      <div>
+        <h3>How Machine Learning Powers OmniSearch</h3>
+        <p>
+          OmniSearch leverages advanced machine learning techniques to deliver
+          accurate and relevant results:
+        </p>
+        <ul>
+          <li>
+            <strong>TF-IDF Vectorization:</strong> Converts text data into
+            numerical vectors to measure relevance.
+          </li>
+          <li>
+            <strong>Cosine Similarity:</strong> Compares query vectors with
+            dataset vectors to find the closest matches.
+          </li>
+          <li>
+            <strong>AI-Powered Explanations:</strong> Provides detailed insights
+            into search results using natural language processing.
+          </li>
+        </ul>
+      </div>
+      <div>
+        <img
+          src="{{ url_for('static', filename='ai.jpg') }}"
+          alt="AI-Integration"
+          width="200px"
+          height="150px"
+        />
+      </div>
+    </section>
+
+    <!-- Day-to-Day Examples Section -->
+    <section id="daily-examples" class="examples-section">
+      <h2>Day to Day Explanations</h2>
+      <p>
+        Here are some examples of how you can use OmniSearch in your daily life:
+      </p>
+      <div class="cards-container">
+        <!-- Card 1 -->
+        <div class="card">
+          <img
+            src="{{ url_for('static', filename='laptop.jpg') }}"
+            alt="Laptop Example"
+            width="150px"
+            height="100px"
+          />
+          <h3>Find Your Perfect Laptop</h3>
+          <p>
+            Search for budget-friendly laptops with features like Intel i5
+            processors and 8GB RAM.
+          </p>
+        </div>
+        <!-- Card 2 -->
+        <div class="card">
+          <img
+            src="{{ url_for('static', filename='blender.jpg') }}"
+            alt="Blender Example"
+            width="150px"
+            height="100px"
+          />
+          <h3>Best Blender for Smoothies</h3>
+          <p>
+            Discover powerful blenders with motor speeds of 1000W+ for smoothies
+            and more.
+          </p>
+        </div>
+        <!-- Card 3 -->
+        <div class="card">
+          <img
+            src="{{ url_for('static', filename='jacket.jpg') }}"
+            alt="Jacket Example"
+            width="150px"
+            height="100px"
+          />
+          <h3>Warm Winter Jackets</h3>
+          <p>
+            Find insulated jackets perfect for cold weather, featuring down or
+            synthetic materials.
+          </p>
+        </div>
+        <!-- Card 4 -->
+        <div class="card">
+          <img
+            src="{{ url_for('static', filename='dumbbell.jpg') }}"
+            alt="Dumbbells Example"
+            width="150px"
+            height="100px"
+          />
+          <h3>Adjustable Dumbbells</h3>
+          <p>
+            Shop for space-saving dumbbells with adjustable weight settings for
+            home workouts.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal for Search Results -->
+    <div id="resultsModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="modalResults"></div>
+      </div>
+    </div>
+    <footer class="footer">
+      <p>&copy; 2025 OmniSearch. All rights reserved.</p>
+    </footer>
+    <script>
+      // Get the modal and close button
+      const modal = document.getElementById("resultsModal");
+      const closeModalButton = document.querySelector(".close");
+
+      // Handle search form submission
+      document.getElementById("searchForm").onsubmit = async (e) => {
+        e.preventDefault();
+        const query = e.target.query.value;
+
+        // Fetch search results
+        const response = await fetch("/search", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: `query=${encodeURIComponent(query)}`,
+        });
+        const data = await response.json();
+
+        let resultsHtml = "";
+        if (data.results && data.results.length > 0) {
+          resultsHtml += "<h3>Search Results:</h3>";
+          data.results.forEach((result) => {
+            resultsHtml += `
+              <div class="result-item">
+                <h4>${result.title}</h4>
+                <p>${result.description}</p>
+              </div>
+            `;
+          });
+        } else {
+          resultsHtml += "<p>No Similar Results found.</p>";
+        }
+
+        if (data.explanation) {
+          resultsHtml += `
+            <div class="explanation">
+              <h3>AI Explanation:</h3>
+              <p>${data.explanation}</p>
+            </div>
+          `;
+        }
+
+        // Display results in the modal
+        document.getElementById("modalResults").innerHTML = resultsHtml;
+        modal.style.display = "block";
+      };
+
+      // Close the modal when the close button is clicked
+      closeModalButton.onclick = () => {
+        modal.style.display = "none";
+      };
+
+      // Close the modal when clicking outside the modal content
+      window.onclick = (event) => {
+        if (event.target === modal) {
+          modal.style.display = "none";
+        }
+      };
+    </script>
+  </body>
+</html>
